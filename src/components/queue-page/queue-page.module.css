@@ -1,0 +1,21 @@
+.form {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: baseline;
+}
+
+.switcher {
+  display: flex;
+  gap: 12px;
+}
+
+.animation {
+  margin-top: 120px;
+  display: flex;
+  column-gap: 16px;
+  row-gap: 78px;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  flex-wrap: wrap;
+}

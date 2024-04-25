@@ -1,0 +1,43 @@
+.form {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: baseline;
+  flex-wrap: wrap;
+  row-gap: 38px;
+}
+
+.switcher {
+  display: flex;
+  gap: 12px;
+}
+
+.input {
+  width: 204px;
+}
+
+.buttonSmall {
+  width: 175px;
+}
+
+.buttonLarge {
+  width: 362px;
+}
+
+.animation {
+  margin-top: 120px;
+  display: flex;
+  column-gap: 16px;
+  row-gap: 78px;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.animationEl {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  align-items: center;
+}
+
