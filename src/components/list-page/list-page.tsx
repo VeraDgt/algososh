@@ -55,7 +55,7 @@ export const ListPage: React.FC = () => {
   const handleAddTail = async (e: SyntheticEvent) => {
     e.preventDefault();
     setLoader(true);
-    setActiveButton(buttonsNames.addHead);
+    setActiveButton(buttonsNames.addTail);
     let newArr = [...arr];
     let index = arr.length - 1;
         
@@ -222,9 +222,9 @@ export const ListPage: React.FC = () => {
             extraClass={styles.buttonSmall}
             text="Добавить в tail"
             name="addTail"
-            disabled={(loader && activeButton !== buttonsNames.remove) || values.inputValue === ""}
+            disabled={(loader && activeButton !== buttonsNames.addTail) || values.inputValue === ""}
             type="button"
-            isLoader={loader && activeButton === buttonsNames.remove}
+            isLoader={loader && activeButton === buttonsNames.addTail}
             onClick={handleAddTail}
           />
           <Button 
@@ -248,9 +248,10 @@ export const ListPage: React.FC = () => {
         </div>
         <div className={styles.switcher}>
           <Input 
+            type="number"
             extraClass={styles.input}
             placeholder="Введите индекс"
-            maxLength={4}
+            max={10}
             isLimitText={false}
             onChange={handleChange}
             value={values.inputIndex}
@@ -261,7 +262,7 @@ export const ListPage: React.FC = () => {
             extraClass={styles.buttonLarge}
             text="Добавить по индексу"
             name="addIndex"
-            disabled={(loader && activeButton !== buttonsNames.addIndex) || values.inputIndex === "" || values.inputValue === "" || Number(values.inputIndex) >= arr.length}
+            disabled={(loader && activeButton !== buttonsNames.addIndex) || values.inputIndex === "" || values.inputValue === "" || Number(values.inputIndex) >= arr.length || Number(values.inputIndex) < 0}
             type="button"
             onClick={handleAddIndex}
             isLoader={loader && activeButton === buttonsNames.addIndex}
@@ -270,7 +271,7 @@ export const ListPage: React.FC = () => {
             extraClass={styles.buttonLarge}
             text="Удалить по индексу"
             name="removeIndex"
-            disabled={(loader && activeButton !== buttonsNames.removeIndex) || values.inputIndex === "" || Number(values.inputIndex) >= arr.length}
+            disabled={(loader && activeButton !== buttonsNames.removeIndex) || values.inputIndex === "" || Number(values.inputIndex) >= arr.length || Number(values.inputIndex) < 0}
             onClick={handleRemoveIndex}
             type="button"
             isLoader={loader && activeButton === buttonsNames.removeIndex}
