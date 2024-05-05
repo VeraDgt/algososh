@@ -55,5 +55,8 @@
   "main": "index.tsx",
   "repository": "y",
   "author": "VeraDgt <veradgt@gmail.com>",
-  "license": "MIT"
+  "license": "MIT",
+  "browser": {
+    "timers": false
+  }
 }
