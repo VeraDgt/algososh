@@ -53,12 +53,14 @@ export const selectionSort = async (arr: TArrItem[], dir: string, setArr: Dispat
       setArr([...arr]);
   }
   setLoader(false);
+  return arr;
 };
 
 export const bubbleSort = async (arr: TArrItem[], dir: string, setArr: Dispatch<SetStateAction<TArrItem[]>>, setLoader: Dispatch<SetStateAction<boolean>>) => {
   setLoader(true);
-  for (let i = 0; i < arr.length - 1; i++) {
-    for (let j = 0; j < arr.length - i - 1; j++) {
+  if (arr.length > 0) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    for (let j = 0; j < i; j++) {
       arr[j].color = ElementStates.Changing;
       arr[j + 1].color = ElementStates.Changing;
       setArr([...arr]);
@@ -68,17 +70,11 @@ export const bubbleSort = async (arr: TArrItem[], dir: string, setArr: Dispatch<
           if (arr[j].value > arr[j + 1].value) {
             swap(arr, j, j + 1);
           }
-          arr[j].color = ElementStates.Default;
-          arr[j + 1].color = ElementStates.Modified;
-          setArr([...arr]);
         break;
         case "desc":
           if (arr[j].value < arr[j + 1].value) {
             swap(arr, j, j + 1);
           }
-          arr[j].color = ElementStates.Default;
-          arr[j + 1].color = ElementStates.Modified;
-          setArr([...arr]);
         break;
         default:
         break;
@@ -94,4 +90,6 @@ export const bubbleSort = async (arr: TArrItem[], dir: string, setArr: Dispatch<
   arr[0].color = ElementStates.Modified;
   setArr([...arr]);
   setLoader(false);
+  return arr;
+  }
 };
