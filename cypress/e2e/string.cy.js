@@ -1,5 +1,4 @@
 import { URL, elStateColors } from "../../src/constants/constants";
-// import { testStringReverse } from "./utils";
 import { SHORT_DELAY_IN_MS } from "../../src/constants/delays";
 import { testCircle } from "../../src/constants/constants";
 
