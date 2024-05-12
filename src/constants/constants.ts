@@ -7,3 +7,5 @@ export const elStateColors = {
 };
 
 export const testCircle = 'div[class*="circle_circle"]';
+export const testCircleArr = 'li[data-cy*="circle"]';
+export const testCircleSmall = 'div[class*="circle_small"]';
