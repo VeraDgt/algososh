@@ -281,7 +281,7 @@ export const ListPage: React.FC = () => {
       <ul className={styles.animation}>
         { arr.map((item, index) => {
           return (
-            <li key={index} className={styles.animationEl}>
+            <li key={index} className={styles.animationEl} data-cy="circle">
               <Circle 
                 letter={item?.value}
                 state={item?.color}

@@ -1,31 +1,31 @@
-import { Dispatch, SetStateAction } from "react"
-import { TArrString } from "../string"
-import { DELAY_IN_MS } from "../../../constants/delays"
 import { ElementStates } from "../../../types/element-states";
-import { delay, swap } from "../../../utils/utils";
 
-export const reverseString = async (arr: TArrString[], setArr: Dispatch<SetStateAction<TArrString[]>>, setLoader: Dispatch<SetStateAction<boolean>>) => {
+export function reverseString(input: string): string[][] {
+  const letters = input.split("");
+  const steps: string[][] = [[...letters]];
 
-  setLoader(true);
-
-  const mid = Math.ceil(arr.length / 2);
-
-  for (let i = 0; i < mid; i++) {
-    let j = arr.length -1 -i;
-
-    if(i !== j) {
-      arr[i].color = ElementStates.Changing;
-      arr[j].color = ElementStates.Changing;
-      setArr([...arr]);
-      await delay(DELAY_IN_MS);
-    }
-
-    swap(arr, i, j);
-
-    arr[i].color = ElementStates.Modified;
-    arr[j].color = ElementStates.Modified;
-
-    setArr([...arr]);
+  if (input.length <= 1) {
+    return steps;
   }
-  setLoader(false);
+
+  for (let left = 0; left < Math.floor(input.length / 2); left++) {
+    const right = input.length - 1 - left;
+
+    [letters[left], letters[right]] = [letters[right], letters[left]];
+
+    steps.push([...letters]);
+  }
+  return steps;
+}
+
+export function setCircleState(index: number, curr: number, length: number): ElementStates {
+  if (
+    index < curr || length - index -1 < curr || length === 1 || curr === Math.floor(length / 2)
+  ) {
+    return ElementStates.Modified;
+  }
+  if (curr === index || curr === length - index - 1) {
+    return ElementStates.Changing;
+  }
+  return ElementStates.Default;
 }

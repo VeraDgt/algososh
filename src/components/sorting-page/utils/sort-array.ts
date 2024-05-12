@@ -53,12 +53,14 @@ export const selectionSort = async (arr: TArrItem[], dir: string, setArr: Dispat
       setArr([...arr]);
   }
   setLoader(false);
+  return arr;
 };
 
 export const bubbleSort = async (arr: TArrItem[], dir: string, setArr: Dispatch<SetStateAction<TArrItem[]>>, setLoader: Dispatch<SetStateAction<boolean>>) => {
   setLoader(true);
-  for (let i = 0; i < arr.length - 1; i++) {
-    for (let j = 0; j < arr.length - i - 1; j++) {
+  if (arr.length > 0) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    for (let j = 0; j < i; j++) {
       arr[j].color = ElementStates.Changing;
       arr[j + 1].color = ElementStates.Changing;
       setArr([...arr]);
@@ -66,32 +68,31 @@ export const bubbleSort = async (arr: TArrItem[], dir: string, setArr: Dispatch<
       switch (dir) {
         case "asc":
           if (arr[j].value > arr[j + 1].value) {
+            arr[j].color = ElementStates.Modified;
+            arr[j+1].color = ElementStates.Modified;
             swap(arr, j, j + 1);
           }
-          arr[j].color = ElementStates.Default;
-          arr[j + 1].color = ElementStates.Modified;
-          setArr([...arr]);
         break;
         case "desc":
           if (arr[j].value < arr[j + 1].value) {
+            arr[j].color = ElementStates.Modified;
+            arr[j+1].color = ElementStates.Modified;
             swap(arr, j, j + 1);
           }
-          arr[j].color = ElementStates.Default;
-          arr[j + 1].color = ElementStates.Modified;
-          setArr([...arr]);
         break;
         default:
         break;
       } 
       arr[j].color = ElementStates.Default;
-      arr[i].color = ElementStates.Default;
+      arr[j + 1].color = ElementStates.Modified;
       setArr([...arr]);
     }
-    arr[i].color = ElementStates.Modified;
+    arr[arr.length -1].color = ElementStates.Modified;
+    arr[0].color = ElementStates.Modified;
     setArr([...arr]);
   } 
-  await delay(SHORT_DELAY_IN_MS);
-  arr[0].color = ElementStates.Modified;
   setArr([...arr]);
   setLoader(false);
+  };
+    return arr;
 };
