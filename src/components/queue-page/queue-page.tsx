@@ -76,7 +76,7 @@ export const QueuePage: React.FC = () => {
           />
           <Button 
             text="Добавить"
-            disabled={loader || queue.tail === 7 }
+            disabled={loader || queue.tail === 7 || !values.inputValue }
             type="submit"
             isLoader={loader && activeButton === buttonsNames.add}
           />

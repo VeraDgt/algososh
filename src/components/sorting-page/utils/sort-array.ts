@@ -68,11 +68,15 @@ export const bubbleSort = async (arr: TArrItem[], dir: string, setArr: Dispatch<
       switch (dir) {
         case "asc":
           if (arr[j].value > arr[j + 1].value) {
+            arr[j].color = ElementStates.Modified;
+            arr[j+1].color = ElementStates.Modified;
             swap(arr, j, j + 1);
           }
         break;
         case "desc":
           if (arr[j].value < arr[j + 1].value) {
+            arr[j].color = ElementStates.Modified;
+            arr[j+1].color = ElementStates.Modified;
             swap(arr, j, j + 1);
           }
         break;
@@ -80,16 +84,15 @@ export const bubbleSort = async (arr: TArrItem[], dir: string, setArr: Dispatch<
         break;
       } 
       arr[j].color = ElementStates.Default;
-      arr[i].color = ElementStates.Default;
+      arr[j + 1].color = ElementStates.Modified;
       setArr([...arr]);
     }
-    arr[i].color = ElementStates.Modified;
+    arr[arr.length -1].color = ElementStates.Modified;
+    arr[0].color = ElementStates.Modified;
     setArr([...arr]);
   } 
-  await delay(SHORT_DELAY_IN_MS);
-  arr[0].color = ElementStates.Modified;
   setArr([...arr]);
   setLoader(false);
-  return arr;
-  }
+  };
+    return arr;
 };
